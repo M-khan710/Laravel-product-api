@@ -1,9 +1,20 @@
 # Laravel API Documentation
 
-## User Registration
-**Endpoint:** `POST /api/register`
+## Authentication  
+All API requests (except registration and login) require a Bearer token for authentication.  
+Include the following header in your requests:  
+```
+Authorization: Bearer your_generated_bearer_token
+```
 
-**Request Parameters:**
+---
+
+## User Registration (No Token Required)  
+**Endpoint:** `POST /api/register`  
+**Request Headers:**  
+- `Content-Type: application/json`  
+
+**Request Parameters:**  
 ```json
 {
     "name": "Mohtadin",
@@ -14,10 +25,13 @@
 ```
 
 ---
-## Create Token (Login)
-**Endpoint:** `POST /api/create-token`
 
-**Request Parameters:**
+## Create Token (Login) (No Token Required)  
+**Endpoint:** `POST /api/create-token`  
+**Request Headers:**  
+- `Content-Type: application/json`  
+
+**Request Parameters:**  
 ```json
 {
     "email": "mkl@gmail.com",
@@ -25,12 +39,23 @@
 }
 ```
 
----
-## Product Management
-### Create Product
-**Endpoint:** `POST /api/products`
+**Response:**  
+```json
+{
+    "token": "your_generated_bearer_token"
+}
+```
 
-**Request Parameters:**
+---
+
+## Product Management  
+### Create Product  
+**Endpoint:** `POST /api/products`  
+**Request Headers:**  
+- `Authorization: Bearer your_generated_bearer_token`  
+- `Content-Type: application/json`  
+
+**Request Parameters:**  
 ```json
 {
     "name": "Product A",
@@ -42,19 +67,28 @@
 }
 ```
 
-### Get All Products (Paginated)
-**Endpoint:** `GET /api/products`
+### Get All Products (Paginated)  
+**Endpoint:** `GET /api/products`  
+**Request Headers:**  
+- `Authorization: Bearer your_generated_bearer_token`
 
-### Get Single Product
-**Endpoint:** `GET /api/products/{id}`
+### Get Single Product  
+**Endpoint:** `GET /api/products/{id}`  
+**Request Headers:**  
+- `Authorization: Bearer your_generated_bearer_token`
 
-### Delete Product
-**Endpoint:** `DELETE /api/products/{id}`
+### Delete Product  
+**Endpoint:** `DELETE /api/products/{id}`  
+**Request Headers:**  
+- `Authorization: Bearer your_generated_bearer_token`
 
-### Update Product
-**Endpoint:** `PUT /api/products/{id}`
+### Update Product  
+**Endpoint:** `PUT /api/products/{id}`  
+**Request Headers:**  
+- `Authorization: Bearer your_generated_bearer_token`  
+- `Content-Type: application/json`  
 
-**Request Parameters:** (example)
+**Request Parameters:**  
 ```json
 {
     "name": "Updated Product Name",
@@ -67,11 +101,15 @@
 ```
 
 ---
-## Order Management
-### Create Order
-**Endpoint:** `POST /api/purchase`
 
-**Request Parameters:**
+## Order Management  
+### Create Order  
+**Endpoint:** `POST /api/purchase`  
+**Request Headers:**  
+- `Authorization: Bearer your_generated_bearer_token`  
+- `Content-Type: application/json`  
+
+**Request Parameters:**  
 ```json
 {
     "name": "John Doe2",
@@ -86,19 +124,30 @@
 }
 ```
 
-### Get All Orders
-**Endpoint:** `GET /api/purchase/all`
+### Get All Orders  
+**Endpoint:** `GET /api/purchase/all`  
+**Request Headers:**  
+- `Authorization: Bearer your_generated_bearer_token`
 
-### Get Single Order
-**Endpoint:** `GET /api/purchase/{uuid}`
+### Get Single Order  
+**Endpoint:** `GET /api/purchase/{uuid}`  
+**Request Headers:**  
+- `Authorization: Bearer your_generated_bearer_token`
 
-### Update Order Status
-**Endpoint:** `PUT /api/purchase/status/{uuid}`
+### Update Order Status  
+**Endpoint:** `PUT /api/purchase/status/{uuid}`  
+**Request Headers:**  
+- `Authorization: Bearer your_generated_bearer_token`  
+- `Content-Type: application/json`  
 
-**Request Parameters:**
+**Request Parameters:**  
 ```json
 {
     "status": "delivered"
 }
 ```
 
+---
+
+This documentation ensures that all API endpoints (except registration and login) require a valid Bearer token for authentication.  
+Replace `your_generated_bearer_token` with the actual token received upon login.
